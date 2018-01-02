@@ -51,13 +51,14 @@ function Get-Capi2EventLogs {
             Get-WinEvent @SplatArgs | ForEach-Object {
 
                 $EventXml = [xml]$_.ToXml()
+                $EventXml = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy
 
-                $ServerName = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy.SSLAdditionalPolicyInfo.serverName
-                $ResultText = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy.Result.'#text'
-                $ProcessName = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy.EventAuxInfo.ProcessName
-                $Certificate = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy.Certificate.fileRef
-                $SubjectName = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy.Certificate.subjectName
-                $CorrelationTaskId = $EventXml.Event.UserData.CertVerifyCertificateChainPolicy.CorrelationAuxInfo.TaskId
+                $ServerName = $EventXml.SSLAdditionalPolicyInfo.serverName
+                $ResultText = $EventXml.Result.'#text'
+                $ProcessName = $EventXml.EventAuxInfo.ProcessName
+                $Certificate = $EventXml.Certificate.fileRef
+                $SubjectName = $EventXml.Certificate.subjectName
+                $CorrelationTaskId = $EventXml.CorrelationAuxInfo.TaskId
 
                 New-Object -TypeName psobject -Property @{  'TimeCreated' = $_.TimeCreated
                                                             'Id' = $_.Id
