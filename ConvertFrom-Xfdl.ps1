@@ -32,6 +32,7 @@ function ConvertFrom-Xfdl {
     .LINK
         https://www.ibm.com/support/knowledgecenter/SSS28S_3.5.0/com.ibm.form.designer.xfdl.doc/XFDL.pdf
     #>
+    # Q2lwaGVyU2NydXBsZXM=
     [CmdletBinding(DefaultParameterSetName='Text')]
     [OutputType([string],ParameterSetName='Text')]
     [OutputType([xml],ParameterSetName='Xml')]
