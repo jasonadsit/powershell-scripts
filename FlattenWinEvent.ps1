@@ -14,7 +14,7 @@ function FlattenWinEvent {
                     $SplatArgs = @{
                         InputObject = $_
                         MemberType = "NoteProperty"
-                        Name = "$($XmlData[$i].name)"
+                        Name = "DATA-$($XmlData[$i].name)"
                         Value = "$($XmlData[$i].'#text')"
                         Force = $true
                         Passthru = $true
